@@ -16,27 +16,27 @@ import org.junit.Test;
 
 import edu.usm.cos420.example1.dao.GenericDao;
 import edu.usm.cos420.example1.dao.ObjectStreamDao;
-import edu.usm.cos420.example1.domain.myOrders;
+import edu.usm.cos420.example1.domain.Orders;
 
 public class TestCItemDao {
 
-	myOdersDao dao; 
+	OrdersDao dao; 
 	
 /** 
  * Create a clean DAO before each test
  */
 	@Before
 	public void setupData() {
-		   dao = new myOdersDao("_citemTest1.ser");
+		   dao = new OrdersDao("_citemTest1.ser");
 		   
 	}
 	
 	@Test
     public void testSaveandFind1() {
         Long id; 
-        myOrders retrievedItem;
+        Orders retrievedItem;
         
-        myOrders oneItem = new myOrders(2, "a string"); 
+        Orders oneItem = new Orders(2, "a string"); 
         
         // get PK of first address
         id = oneItem.getId();
@@ -54,12 +54,12 @@ public class TestCItemDao {
 	@Test
     public void testSaveandRemove1() {
         Long id; 
-        myOrders retrievedItem;
+        Orders retrievedItem;
         
     	
-        myOrders oneItem = new myOrders(new Long((int) (Math.random()*100000)), 1, "a string"); 
-        myOrders twoItem = new myOrders(new Long((int) (Math.random()*100000)), 2, "a string"); 
-        myOrders threeItem = new myOrders(new Long((int) (Math.random()*100000)), 3, "a string"); 
+        Orders oneItem = new Orders(new Long((int) (Math.random()*100000)), 1, "a string"); 
+        Orders twoItem = new Orders(new Long((int) (Math.random()*100000)), 2, "a string"); 
+        Orders threeItem = new Orders(new Long((int) (Math.random()*100000)), 3, "a string"); 
         
         // get PK of first address
         id = oneItem.getId();        
@@ -80,12 +80,12 @@ public class TestCItemDao {
 	@Test
     public void testSaveandUpdate1() {
         Long id; 
-        myOrders retrievedItem;
+        Orders retrievedItem;
         
     	
-        myOrders oneItem = new myOrders(new Long((int) (Math.random()*100000)), 1, "a string"); 
-        myOrders twoItem = new myOrders(new Long((int) (Math.random()*100000)), 2, "a string"); 
-        myOrders threeItem = new myOrders(new Long((int) (Math.random()*100000)), 3, "a string"); 
+        Orders oneItem = new Orders(new Long((int) (Math.random()*100000)), 1, "a string"); 
+        Orders twoItem = new Orders(new Long((int) (Math.random()*100000)), 2, "a string"); 
+        Orders threeItem = new Orders(new Long((int) (Math.random()*100000)), 3, "a string"); 
         
         // get PK of first address
         id = oneItem.getId();        

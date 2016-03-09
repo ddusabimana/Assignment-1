@@ -4,7 +4,7 @@ import java.util.List;
 
 import edu.usm.cos420.example1.dao.GenericDao;
 import edu.usm.cos420.example1.dao.ObjectStreamDao;
-import edu.usm.cos420.example1.domain.myOrders;
+import edu.usm.cos420.example1.domain.Orders;
 
 /*
 ./Desktop/USM/Spring2016/COS_420_Object-Oriented_Design/Assignment/Example1
@@ -20,14 +20,14 @@ myPlants.ser
  */
 public class CItemDao
 {
-	private GenericDao<Long,myOrders> cItemDao;
+	private GenericDao<Long,Orders> cItemDao;
 
 	/**
 	 * Default constructor creates an ObjectStream file called citem.ser
 	 */
 	public CItemDao()
 	{
-		cItemDao = new ObjectStreamDao<Long,myOrders>("citem.ser");;
+		cItemDao = new ObjectStreamDao<Long,Orders>("citem.ser");;
 	}
 
 	/**
@@ -35,14 +35,14 @@ public class CItemDao
 	 */
 	public CItemDao(String fileName)
 	{
-		cItemDao = new ObjectStreamDao<Long,myOrders>(fileName);;
+		cItemDao = new ObjectStreamDao<Long,Orders>(fileName);;
 	}
 
 	/**
 	 * Support for other DAOs is provided
 	 * @param dao a Data Access Object class that implements GenericDao<Long,CItem> 
 	 */
-	public CItemDao(GenericDao<Long,myOrders> dao)
+	public CItemDao(GenericDao<Long,Orders> dao)
 	{
 		cItemDao = dao;
 	}
@@ -51,7 +51,7 @@ public class CItemDao
 	 * Returns the DAO used in the class
 	 * @return a DAO that implements GenericDao<Long,CItem> 
 	 */
-	public GenericDao<Long,myOrders> getCItemDao() {
+	public GenericDao<Long,Orders> getCItemDao() {
 		return cItemDao;
 	}
 
@@ -59,7 +59,7 @@ public class CItemDao
 	 * Add a CItem to the DAO repository
 	 * @param entity any CItem object
 	 */
-	public void add(myOrders entity)
+	public void add(Orders entity)
 	{
 		cItemDao.add(entity.getId(), entity);
 	}
@@ -68,7 +68,7 @@ public class CItemDao
 	 * Update a CItem in the DAO repository
 	 * @param entity any CItem object
 	 */
-	public void update(myOrders entity) 
+	public void update(Orders entity) 
 	{
 		cItemDao.update(entity.getId(), entity);
 	}
@@ -88,7 +88,7 @@ public class CItemDao
 	 * @param id of the CItem object to locate
 	 * @return the CItem with id field equal to key
 	 */
-	public myOrders find(Long key)
+	public Orders find(Long key)
 	{
 		return cItemDao.find(key);
 	}
@@ -98,7 +98,7 @@ public class CItemDao
 	 * @return List of CItems 
 	 */
 
-	public List<myOrders> list() {
+	public List<Orders> list() {
 		return cItemDao.list();
 	}
 

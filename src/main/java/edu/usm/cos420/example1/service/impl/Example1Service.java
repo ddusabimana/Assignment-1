@@ -5,12 +5,12 @@ import java.util.Iterator;
 import java.util.List;
 
 
-import edu.usm.cos420.example1.dao.domain.myOrdersDao;
-import edu.usm.cos420.example1.dao.domain.myCustomersDao;
-import edu.usm.cos420.example1.dao.domain.myPlantsDao;
-import edu.usm.cos420.example1.domain.myOrders;
-import edu.usm.cos420.example1.domain.myCustomers;
-import edu.usm.cos420.example1.domain.myPlants;
+import edu.usm.cos420.example1.dao.domain.OrdersDao;
+import edu.usm.cos420.example1.dao.domain.CustomersDao;
+import edu.usm.cos420.example1.dao.domain.PlantsDao;
+import edu.usm.cos420.example1.domain.Orders;
+import edu.usm.cos420.example1.domain.Customers;
+import edu.usm.cos420.example1.domain.Plants;
 import edu.usm.cos420.example1.service.ExampleService;
 
 /**
@@ -23,20 +23,20 @@ import edu.usm.cos420.example1.service.ExampleService;
  */
 public class Example1Service implements ExampleService
 {
-	myOrdersDao dao;
-	myPlantsDao plantDatabase; 
-	myCustomersDao customersDatabase;
-	myOrdersDao ordersDatabase;
+	OrdersDao dao;
+	PlantsDao plantDatabase; 
+	CustomersDao customersDatabase;
+	OrdersDao ordersDatabase;
 	/**
 	 * Default Constructor creates a default CItemDao object 
 	 */
 	
     public Example1Service()
     {
-        this.dao = new myOrdersDao();	
-        this.plantDatabase = new myPlantsDao();
-        this.customersDatabase= new myCustomersDao();
-        this.ordersDatabase = new myOrdersDao();
+        this.dao = new OrdersDao();	
+        this.plantDatabase = new PlantsDao();
+        this.customersDatabase= new CustomersDao();
+        this.ordersDatabase = new OrdersDao();
         
     }
 
@@ -44,7 +44,7 @@ public class Example1Service implements ExampleService
      * Constructor with the DAO provided 
      * @param dao Data Access Object to use in the service
      */
-    public Example1Service(myOrdersDao dao, myPlantsDao plantDatabase, myCustomersDao customersDatabase)
+    public Example1Service(OrdersDao dao, PlantsDao plantDatabase, CustomersDao customersDatabase)
     {
         this.dao = dao;	
     }
@@ -53,7 +53,7 @@ public class Example1Service implements ExampleService
      * Constructor with the DAO provided 
      * @param dao Data Access Object to use in the service
      */
-    public Example1Service(myPlantsDao plantDatabase)
+    public Example1Service(PlantsDao plantDatabase)
     {
         this.plantDatabase = plantDatabase; // adding plant items
     }
@@ -62,12 +62,12 @@ public class Example1Service implements ExampleService
      * Constructor with the DAO provided 
      * @param dao Data Access Object to use in the service
      */
-    public Example1Service(myOrdersDao ordersDatabase)
+    public Example1Service(OrdersDao ordersDatabase)
     {
         this.ordersDatabase = ordersDatabase;// adding customers info
     }
  
-    public Example1Service(myCustomersDao customersDatabase)
+    public Example1Service(CustomersDao customersDatabase)
     {
         this.customersDatabase = customersDatabase;// adding customers info
     }
@@ -78,17 +78,17 @@ public class Example1Service implements ExampleService
     public void addACItem() 
     {
     	int randomNum = 1 + (int)(Math.random() * 100000); 
-    	myOrders anItem = new myOrders(new Long(randomNum), randomNum, "String with random number " + randomNum);
+    	Orders anItem = new Orders(new Long(randomNum), randomNum, "String with random number " + randomNum);
         dao.add(anItem);
     }
     
     public void addmyPlants(String discription, Long itemNumber)
     {
-    	myPlants item = new myPlants(discription, itemNumber);
+    	Plants item = new Plants(discription, itemNumber);
     	plantDatabase.add(item);
     }
 
-    public void updatemyPlants(myPlants myPlantsObj, int nUpdate)
+    public void updatemyPlants(Plants myPlantsObj, int nUpdate)
     {
     	int nCurrStock = 0;
     	//.
@@ -100,13 +100,13 @@ public class Example1Service implements ExampleService
     
 	public void addmyCustomers(Long idNumber, String name, String address)
 	{
-    	myCustomers customers = new myCustomers(idNumber, name, address);
+    	Customers customers = new Customers(idNumber, name, address);
     	customersDatabase.add(customers);
     }
  
-	public void addmyOrders(myCustomers customers, myPlants inventory, int quantity, Date date, double total)
+	public void addmyOrders(Customers customers, Plants inventory, int quantity, Date date, double total)
 	{
-		myOrders orders = new myOrders(customers, inventory, quantity, date, total);
+		Orders orders = new Orders(customers, inventory, quantity, date, total);
 		ordersDatabase.add(orders);
 	}
 
@@ -116,16 +116,16 @@ public class Example1Service implements ExampleService
      */
 	public Long maxCItemId()
 	{
-    	List<myOrders> list = dao.list();
+    	List<Orders> list = dao.list();
     	Long max = 0L;
     	if(list.isEmpty()) {
     		 return max;
     	}
     	else {
-    		Iterator<myOrders> iter = list.iterator();
+    		Iterator<Orders> iter = list.iterator();
     		max = iter.next().getId();
     		while(iter.hasNext()) {
-    			 myOrders anItem = iter.next();
+    			 Orders anItem = iter.next();
     			 if(anItem.getId() > max) {
     			     max = anItem.getId();
     			 }

@@ -4,38 +4,38 @@ import java.util.List;
 
 import edu.usm.cos420.example1.dao.GenericDao;
 import edu.usm.cos420.example1.dao.ObjectStreamDao;
-import edu.usm.cos420.example1.domain.myPlants;
+import edu.usm.cos420.example1.domain.Plants;
 
 /**
  * 
  *  A Data Access Object specifically for myPlants entities 
  *     
  */
-public class myPlantsDao
+public class PlantsDao
 {
-	private GenericDao<Long,myPlants> myPlantsDao;
+	private GenericDao<Long,Plants> myPlantsDao;
 
 	/**
 	 * Default constructor creates an ObjectStream file called myPlants.ser
 	 */
-	public myPlantsDao()
+	public PlantsDao()
 	{
-		myPlantsDao = new ObjectStreamDao<Long,myPlants>("myPlants.ser");;
+		myPlantsDao = new ObjectStreamDao<Long,Plants>("myPlants.ser");;
 	}
 
 	/**
 	 * Constructor where the filename is provided 
 	 */
-	public myPlantsDao(String fileName)
+	public PlantsDao(String fileName)
 	{
-		myPlantsDao = new ObjectStreamDao<Long,myPlants>(fileName);;
+		myPlantsDao = new ObjectStreamDao<Long,Plants>(fileName);;
 	}
 
 	/**
 	 * Support for other DAOs is provided
 	 * @param dao a Data Access Object class that implements GenericDao<Long,myPlants> 
 	 */
-	public myPlantsDao(GenericDao<Long,myPlants> dao)
+	public PlantsDao(GenericDao<Long,Plants> dao)
 	{
 		myPlantsDao = dao;
 	}
@@ -44,7 +44,7 @@ public class myPlantsDao
 	 * Returns the DAO used in the class
 	 * @return a DAO that implements GenericDao<Long,myPlants> 
 	 */
-	public GenericDao<Long,myPlants> getmyPlantsDao() {
+	public GenericDao<Long,Plants> getmyPlantsDao() {
 		return myPlantsDao;
 	}
 
@@ -52,7 +52,7 @@ public class myPlantsDao
 	 * Add a myPlants to the DAO repository
 	 * @param entity any myPlants object
 	 */
-	public void add(myPlants entity)
+	public void add(Plants entity)
 	{
 		myPlantsDao.add(entity.getId(), entity);
 	}
@@ -61,7 +61,7 @@ public class myPlantsDao
 	 * Update a myPlants in the DAO repository
 	 * @param entity any myPlants object
 	 */
-	public void update(myPlants entity) 
+	public void update(Plants entity) 
 	{
 		myPlantsDao.update(entity.getId(), entity);
 	}
@@ -81,7 +81,7 @@ public class myPlantsDao
 	 * @param id of the myPlants object to locate
 	 * @return the myPlants with id field equal to key
 	 */
-	public myPlants find(Long key)
+	public Plants find(Long key)
 	{
 		return myPlantsDao.find(key);
 	}
@@ -91,7 +91,7 @@ public class myPlantsDao
 	 * @return List of myPlants
 	 */
 
-	public List<myPlants> list()
+	public List<Plants> list()
 	{
 		return myPlantsDao.list();
 	}

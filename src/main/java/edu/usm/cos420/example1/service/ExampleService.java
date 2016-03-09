@@ -2,9 +2,9 @@ package edu.usm.cos420.example1.service;
 
 import java.sql.Date;
 
-import edu.usm.cos420.example1.domain.myCustomers;
-import edu.usm.cos420.example1.domain.myPlants;
-import edu.usm.cos420.example1.domain.myOrders;
+import edu.usm.cos420.example1.domain.Customers;
+import edu.usm.cos420.example1.domain.Plants;
+import edu.usm.cos420.example1.domain.Orders;
 /**
  * 
  *  The Example1 Service Interface is based a design pattern
@@ -21,9 +21,9 @@ public interface ExampleService
     public void addACItem();
     //.
     public void addmyPlants(String discription, Long itemNumber);
-	public void updatemyPlants(myPlants plantForUpdate, int nQuantForUpdate);
+	public void updatemyPlants(Plants plantForUpdate, int nQuantForUpdate);
     public void addmyCustomers(Long idNumber,String name, String address);
-    public void addmyOrders(myCustomers customers, myPlants inventory, int quantity, Date date, double total);
+    public void addmyOrders(Customers customers, Plants inventory, int quantity, Date date, double total);
     //.
     /**
      * Calculate the maximum ID value of elements in the repository     

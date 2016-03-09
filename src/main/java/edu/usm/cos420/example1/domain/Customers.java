@@ -2,7 +2,7 @@ package edu.usm.cos420.example1.domain;
 
 import java.io.Serializable;
 
-public class myCustomers implements Serializable {
+public class Customers implements Serializable {
 	private static final long serialVersionUID = 7526472295622776147L;
     
 	private Long id;
@@ -35,13 +35,13 @@ public class myCustomers implements Serializable {
 	 * Creates new CItem with an autogenenerated sequence ID 
 	 */
 	
-    public myCustomers(Long ID,String userName,String myAddress){
+    public Customers(Long ID,String userName,String myAddress){
     	 this.name = userName;
     	 this.id = ID;
     	 this.address= myAddress;
     	 
      }
-	public myCustomers() {
+	public Customers() {
         myInteger = new Integer(0);
         myString = new String("");
     	id = generateId();
@@ -51,7 +51,7 @@ public class myCustomers implements Serializable {
 	 * Two field Constructor : 
 	 * Creates new CItem with an autogenenerated sequence ID 
 	 */
-    public myCustomers(int n, String str) {
+    public Customers(int n, String str) {
         myInteger = new Integer(n);
         myString = str;
     	id = generateId();

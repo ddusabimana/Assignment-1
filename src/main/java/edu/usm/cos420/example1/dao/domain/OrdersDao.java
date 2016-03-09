@@ -4,38 +4,38 @@ import java.util.List;
 
 import edu.usm.cos420.example1.dao.GenericDao;
 import edu.usm.cos420.example1.dao.ObjectStreamDao;
-import edu.usm.cos420.example1.domain.myOrders;
+import edu.usm.cos420.example1.domain.Orders;
 
 /**
  * 
  *  A Data Access Object specifically for myOrders entities 
  *     
  */
-public class myOrdersDao
+public class OrdersDao
 {
-	private GenericDao<Long,myOrders> myOrdersDao;
+	private GenericDao<Long,Orders> myOrdersDao;
 
 	/**
 	 * Default constructor creates an ObjectStream file called myOrders.ser
 	 */
-	public myOrdersDao()
+	public OrdersDao()
 	{
-		myOrdersDao = new ObjectStreamDao<Long,myOrders>("myOrders.ser");
+		myOrdersDao = new ObjectStreamDao<Long,Orders>("myOrders.ser");
 	}
 
 	/**
 	 * Constructor where the filename is provided 
 	 */
-	public myOrdersDao(String fileName)
+	public OrdersDao(String fileName)
 	{
-		myOrdersDao = new ObjectStreamDao<Long,myOrders>(fileName);;
+		myOrdersDao = new ObjectStreamDao<Long,Orders>(fileName);;
 	}
 
 	/**
 	 * Support for other DAOs is provided
 	 * @param dao a Data Access Object class that implements GenericDao<Long,myOrders> 
 	 */
-	public myOrdersDao(GenericDao<Long,myOrders> dao)
+	public OrdersDao(GenericDao<Long,Orders> dao)
 	{
 		myOrdersDao = dao;
 	}
@@ -44,7 +44,7 @@ public class myOrdersDao
 	 * Returns the DAO used in the class
 	 * @return a DAO that implements GenericDao<Long,myOrders> 
 	 */
-	public GenericDao<Long,myOrders> getmyOrdersDao() {
+	public GenericDao<Long,Orders> getmyOrdersDao() {
 		return myOrdersDao;
 	}
 
@@ -52,7 +52,7 @@ public class myOrdersDao
 	 * Add a myOrders to the DAO repository
 	 * @param entity any myOrders object
 	 */
-	public void add(myOrders entity)
+	public void add(Orders entity)
 	{
 		myOrdersDao.add(entity.getId(), entity);
 	}
@@ -61,7 +61,7 @@ public class myOrdersDao
 	 * Update a myOrders in the DAO repository
 	 * @param entity any myOrders object
 	 */
-	public void update(myOrders entity) 
+	public void update(Orders entity) 
 	{
 		myOrdersDao.update(entity.getId(), entity);
 	}
@@ -81,7 +81,7 @@ public class myOrdersDao
 	 * @param id of the myOrders object to locate
 	 * @return the myOrders with id field equal to key
 	 */
-	public myOrders find(Long key)
+	public Orders find(Long key)
 	{
 		return myOrdersDao.find(key);
 	}
@@ -91,7 +91,7 @@ public class myOrdersDao
 	 * @return List of myOrderss 
 	 */
 
-	public List<myOrders> list() {
+	public List<Orders> list() {
 		return myOrdersDao.list();
 	}
 

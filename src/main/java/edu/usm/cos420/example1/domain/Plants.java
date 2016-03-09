@@ -2,7 +2,7 @@ package edu.usm.cos420.example1.domain;
 
 import java.io.Serializable;
 
-public class myPlants implements Serializable
+public class Plants implements Serializable
 {
 	private static final long serialVersionUID = 7526472295622776147L;
     private Long id;
@@ -14,7 +14,7 @@ public class myPlants implements Serializable
 	 * Default Constructor : 
 	 * Creates new CItem with an auto-generated sequence ID 
 	 */
-	public myPlants(String discrpt, Long ID)
+	public Plants(String discrpt, Long ID)
 	{
 		id = ID;
 		setDiscription(discrpt);
@@ -22,7 +22,7 @@ public class myPlants implements Serializable
         myString = new String("");
 	}
 
-	public myPlants()
+	public Plants()
 	{
     	id = generateId();
 		myInteger = new Integer(0);
@@ -33,7 +33,7 @@ public class myPlants implements Serializable
 	 * Two field Constructor : 
 	 * Creates new CItem with an auto-generated sequence ID 
 	 */
-    public myPlants(int n, String str)
+    public Plants(int n, String str)
     {
     	id = generateId();
     	myInteger = new Integer(n);
@@ -43,7 +43,7 @@ public class myPlants implements Serializable
     /** 
      * Three field constructor 
      */
-    public myPlants(Long id, int n, String str)
+    public Plants(Long id, int n, String str)
 	{
         myInteger = new Integer(n);
         myString = str;

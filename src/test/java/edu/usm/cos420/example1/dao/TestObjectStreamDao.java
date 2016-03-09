@@ -15,11 +15,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.usm.cos420.example1.dao.ObjectStreamDao;
-import edu.usm.cos420.example1.domain.myOrders;
+import edu.usm.cos420.example1.domain.Orders;
 
 public class TestObjectStreamDao {
 
-	ObjectStreamDao<Long, myOrders> dao1; 
+	ObjectStreamDao<Long, Orders> dao1; 
 	ObjectStreamDao<String, String> dao2; 
 	
 /** 
@@ -27,23 +27,23 @@ public class TestObjectStreamDao {
  */
 	@Before
 	public void setupData() {
-		   dao1 = new ObjectStreamDao<Long, myOrders>("_test1.ser");
+		   dao1 = new ObjectStreamDao<Long, Orders>("_test1.ser");
 		   dao2 = new ObjectStreamDao<String, String>("_test2.ser");
 	}
 	
 	@Test
     public void testSaveandFind1() {
         Long id; 
-        myOrders retrievedItem;
+        Orders retrievedItem;
         
-        myOrders oneItem = new myOrders(2, "a string"); 
+        Orders oneItem = new Orders(2, "a string"); 
         
         // get PK of first address
         id = oneItem.getId();
         
         dao1.add(id, oneItem);
 
-        retrievedItem = (myOrders) dao1.find(id);
+        retrievedItem = (Orders) dao1.find(id);
         
         assertNotNull("Dao returns a null item.", retrievedItem);
         assertEquals("Stored Id and original Id are not equal ", retrievedItem.getId() , oneItem.getId());
@@ -54,12 +54,12 @@ public class TestObjectStreamDao {
 	@Test
     public void testSaveandRemove1() {
         Long id; 
-        myOrders retrievedItem;
+        Orders retrievedItem;
         
     	
-        myOrders oneItem = new myOrders(new Long((int) (Math.random()*100000)), 1, "a string"); 
-        myOrders twoItem = new myOrders(new Long((int) (Math.random()*100000)), 2, "a string"); 
-        myOrders threeItem = new myOrders(new Long((int) (Math.random()*100000)), 3, "a string"); 
+        Orders oneItem = new Orders(new Long((int) (Math.random()*100000)), 1, "a string"); 
+        Orders twoItem = new Orders(new Long((int) (Math.random()*100000)), 2, "a string"); 
+        Orders threeItem = new Orders(new Long((int) (Math.random()*100000)), 3, "a string"); 
         
         // get PK of first address
         id = oneItem.getId();        
@@ -71,7 +71,7 @@ public class TestObjectStreamDao {
 
         dao1.remove(twoItem.getId());
         
-        retrievedItem = (myOrders) dao1.find(twoItem.getId());
+        retrievedItem = (Orders) dao1.find(twoItem.getId());
         
         assertNull("Dao returns a null item.", retrievedItem);
         
@@ -80,12 +80,12 @@ public class TestObjectStreamDao {
 	@Test
     public void testSaveandUpdate1() {
         Long id; 
-        myOrders retrievedItem;
+        Orders retrievedItem;
         
     	
-        myOrders oneItem = new myOrders(new Long((int) (Math.random()*100000)), 1, "a string"); 
-        myOrders twoItem = new myOrders(new Long((int) (Math.random()*100000)), 2, "a string"); 
-        myOrders threeItem = new myOrders(new Long((int) (Math.random()*100000)), 3, "a string"); 
+        Orders oneItem = new Orders(new Long((int) (Math.random()*100000)), 1, "a string"); 
+        Orders twoItem = new Orders(new Long((int) (Math.random()*100000)), 2, "a string"); 
+        Orders threeItem = new Orders(new Long((int) (Math.random()*100000)), 3, "a string"); 
         
         // get PK of first address
         id = oneItem.getId();        
@@ -96,7 +96,7 @@ public class TestObjectStreamDao {
         dao1.add(id, threeItem);
 
         // CHeck one of the three items to make sure it was stored correctly
-        retrievedItem = (myOrders) dao1.find(twoItem.getId());
+        retrievedItem = (Orders) dao1.find(twoItem.getId());
         
         assertNotNull("Dao returns a null item.", retrievedItem);
         assertEquals("Stored Id and original Id are not equal ", retrievedItem.getId() , twoItem.getId());
@@ -106,7 +106,7 @@ public class TestObjectStreamDao {
         twoItem.setMyString("A New String");
         twoItem.setMyInteger(55);
         dao1.update(twoItem.getId(),twoItem);
-        retrievedItem = (myOrders) dao1.find(twoItem.getId());
+        retrievedItem = (Orders) dao1.find(twoItem.getId());
 
         // Check that the modified elements was properly stored
         assertNotNull("Dao returns a null item.", retrievedItem);
@@ -114,7 +114,7 @@ public class TestObjectStreamDao {
         assertEquals("Stored int and original int are not equal ", retrievedItem.getMyInteger() , twoItem.getMyInteger());
         assertEquals("Stored int and original int are not equal ", retrievedItem.getMyString() , twoItem.getMyString());
 
-        retrievedItem = (myOrders) dao1.find(threeItem.getId());
+        retrievedItem = (Orders) dao1.find(threeItem.getId());
         
         // check one of the other elements to make sure they are ok 
         assertNotNull("Dao returns a null item.", retrievedItem);
@@ -141,9 +141,9 @@ public class TestObjectStreamDao {
     public void testCountObjectsInFile() {
         Long id; 
         
-        myOrders oneItem = new myOrders(1, "a string"); 
-        myOrders twoItem = new myOrders(2, "a string"); 
-        myOrders threeItem = new myOrders(3, "a string"); 
+        Orders oneItem = new Orders(1, "a string"); 
+        Orders twoItem = new Orders(2, "a string"); 
+        Orders threeItem = new Orders(3, "a string"); 
         
         // get PK of first address
         id = oneItem.getId();      
@@ -163,10 +163,10 @@ public class TestObjectStreamDao {
     public void testPersistenceAcrossTests() {
         Long id; 
         
- 	    ObjectStreamDao<Long,myOrders> pdao = new ObjectStreamDao<Long, myOrders>("_ptest.ser");
-        myOrders oneItem = new myOrders(new Long((int) (Math.random()*100000)), 1, "a string"); 
-        myOrders twoItem = new myOrders(new Long((int) (Math.random()*100000)), 2, "a string"); 
-        myOrders threeItem = new myOrders(new Long((int) (Math.random()*100000)), 3, "a string"); 
+ 	    ObjectStreamDao<Long,Orders> pdao = new ObjectStreamDao<Long, Orders>("_ptest.ser");
+        Orders oneItem = new Orders(new Long((int) (Math.random()*100000)), 1, "a string"); 
+        Orders twoItem = new Orders(new Long((int) (Math.random()*100000)), 2, "a string"); 
+        Orders threeItem = new Orders(new Long((int) (Math.random()*100000)), 3, "a string"); 
 
         int initialCount = pdao.determineNumberOfObjectsInStream();
 

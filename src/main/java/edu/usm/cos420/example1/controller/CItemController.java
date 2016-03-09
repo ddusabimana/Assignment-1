@@ -12,12 +12,12 @@ import java.util.List;
 //.
 import edu.usm.cos420.example1.service.ExampleService;
 import edu.usm.cos420.example1.view.impl.CItemView;
-import edu.usm.cos420.example1.dao.domain.myCustomersDao;
-import edu.usm.cos420.example1.dao.domain.myPlantsDao;
-import edu.usm.cos420.example1.dao.domain.myOrdersDao;
-import edu.usm.cos420.example1.domain.myCustomers;
-import edu.usm.cos420.example1.domain.myPlants;
-import edu.usm.cos420.example1.domain.myOrders;
+import edu.usm.cos420.example1.dao.domain.CustomersDao;
+import edu.usm.cos420.example1.dao.domain.PlantsDao;
+import edu.usm.cos420.example1.dao.domain.OrdersDao;
+import edu.usm.cos420.example1.domain.Customers;
+import edu.usm.cos420.example1.domain.Plants;
+import edu.usm.cos420.example1.domain.Orders;
 //.
 /**
  *   A Controller class to execute user's menu choice.
@@ -105,7 +105,7 @@ public class CItemController
 	   
 	    else if(choice == CItemView.stock) { //.Add Stock -------------------------------------------------
 			String strPlantName = "";
-			myPlants plantForUpdate;
+			Plants plantForUpdate;
 			while(true) {
 				strPlantName = "";
 				BufferedReader brplant = new BufferedReader(new InputStreamReader(System.in));
@@ -140,7 +140,7 @@ public class CItemController
 	  
 	    else if(choice == CItemView.order) { //.Add Order -------------------------------------------------
 	    	String strCustName = "";
-	    	myCustomers custForOrder;
+	    	Customers custForOrder;
 			while(true) { //.Get Customer Name
 				strCustName = "";
 				BufferedReader brcustomer = new BufferedReader(new InputStreamReader(System.in));
@@ -160,7 +160,7 @@ public class CItemController
 				}
 			}
 			String strPlantName = "";
-			myPlants plantForOrder;
+			Plants plantForOrder;
 			while(true) { //.Get Plant Description
 				strPlantName = "";
 				BufferedReader brplant = new BufferedReader(new InputStreamReader(System.in));
@@ -220,14 +220,14 @@ public class CItemController
 
 	private void displayCustomers()
 	{
-		List<myCustomers> list = new ArrayList<myCustomers>();
-		myCustomersDao customerdao = new myCustomersDao("myCustomers.ser");
+		List<Customers> list = new ArrayList<Customers>();
+		CustomersDao customerdao = new CustomersDao("myCustomers.ser");
 		list =  customerdao.list();
-		Iterator<myCustomers> itr = list.iterator();
+		Iterator<Customers> itr = list.iterator();
 		//.
 		System.out.println("ID\t\tNAME\t\t\tADDRESS\n");
 		while(itr.hasNext()) {
-			myCustomers element = itr.next();
+			Customers element = itr.next();
 			int ID = element.getId().intValue();
 			String name = element.getName();
 			String address = element.getAddress();
@@ -239,14 +239,14 @@ public class CItemController
 
 	private void displayPlants()
 	{
-		List<myPlants> list = new ArrayList<myPlants>();
-		myPlantsDao plantdao = new myPlantsDao("myPlants.ser");
+		List<Plants> list = new ArrayList<Plants>();
+		PlantsDao plantdao = new PlantsDao("myPlants.ser");
 		list = plantdao.list();
-		Iterator<myPlants> itr = list.iterator();
+		Iterator<Plants> itr = list.iterator();
 		//.
 		System.out.println("DISCRIPTION\t\t\tID NUMBER\t\t\tSTOCK\n");
 		while(itr.hasNext()) {
-			myPlants element = itr.next();
+			Plants element = itr.next();
 			String strPlant = element.getDiscription();
 			int Id = element.getId().intValue();
 			int Stock = element.getMyInteger();
@@ -257,14 +257,14 @@ public class CItemController
 
 	private void displayOrders()
 	{
-		List<myOrders> list = new ArrayList<myOrders>();
-		myOrdersDao orderdao = new myOrdersDao("myOrders.ser");
+		List<Orders> list = new ArrayList<Orders>();
+		OrdersDao orderdao = new OrdersDao("myOrders.ser");
 		list = orderdao.list();
-		Iterator<myOrders> itr = list.iterator();
+		Iterator<Orders> itr = list.iterator();
 		//.
 		System.out.println("CUSTOMER\t\tPLANT NAME\t\tQUANTITY\tDATE\n");
 		while(itr.hasNext()) {
-			myOrders element = itr.next();
+			Orders element = itr.next();
 			String strCustName = element.getCustomers().getName();
 			String strPlantName = element.getPlants().getDiscription();
 			int nOrderQuant = element.getQuantity();
@@ -274,14 +274,14 @@ public class CItemController
 		System.out.println();
 	}
 
-	private myCustomers verifyCustByName(String strCustName)
+	private Customers verifyCustByName(String strCustName)
 	{
-		List<myCustomers> list = new ArrayList<myCustomers>();
-		myCustomersDao customerdao = new myCustomersDao("myCustomers.ser");
+		List<Customers> list = new ArrayList<Customers>();
+		CustomersDao customerdao = new CustomersDao("myCustomers.ser");
 		list =  customerdao.list();
-		Iterator<myCustomers> itr = list.iterator();
+		Iterator<Customers> itr = list.iterator();
 		while(itr.hasNext()) {
-			myCustomers element = itr.next();
+			Customers element = itr.next();
 			int ID = element.getId().intValue();
 			String name = element.getName();
 			if(name.equalsIgnoreCase(strCustName)) {
@@ -292,14 +292,14 @@ public class CItemController
 	}
 	
 	
-	private myCustomers verifyCustById(int nCustId)
+	private Customers verifyCustById(int nCustId)
 	{
-		List<myCustomers> list = new ArrayList<myCustomers>();
-		myCustomersDao customerdao = new myCustomersDao("myCustomers.ser");
+		List<Customers> list = new ArrayList<Customers>();
+		CustomersDao customerdao = new CustomersDao("myCustomers.ser");
 		list =  customerdao.list();
-		Iterator<myCustomers> itr = list.iterator();
+		Iterator<Customers> itr = list.iterator();
 		while(itr.hasNext()) {
-			myCustomers element = itr.next();
+			Customers element = itr.next();
 			int ID = element.getId().intValue();
 			if(ID == nCustId) {
 				return(element);
@@ -308,14 +308,14 @@ public class CItemController
 		return(null);
 	}
 
-	private myPlants verifyPlantByDesc(String strPlantDesc)
+	private Plants verifyPlantByDesc(String strPlantDesc)
 	{
-		List<myPlants> list = new ArrayList<myPlants>();
-		myPlantsDao plantdao = new myPlantsDao("myPlants.ser");
+		List<Plants> list = new ArrayList<Plants>();
+		PlantsDao plantdao = new PlantsDao("myPlants.ser");
 		list = plantdao.list();
-		Iterator<myPlants> itr = list.iterator();
+		Iterator<Plants> itr = list.iterator();
 		while(itr.hasNext()) {
-			myPlants element = itr.next();
+			Plants element = itr.next();
 			String discription = element.getDiscription();
 			int ID = element.getId().intValue();
 			if(discription.equalsIgnoreCase(strPlantDesc)) {

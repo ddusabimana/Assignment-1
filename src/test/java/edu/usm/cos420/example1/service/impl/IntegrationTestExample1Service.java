@@ -16,26 +16,26 @@ import org.junit.Test;
 
 import edu.usm.cos420.example1.dao.GenericDao;
 import edu.usm.cos420.example1.dao.ObjectStreamDao;
-import edu.usm.cos420.example1.dao.domain.myOdersDao;
-import edu.usm.cos420.example1.domain.myOrders;
+import edu.usm.cos420.example1.dao.domain.OrdersDao;
+import edu.usm.cos420.example1.domain.Orders;
 import edu.usm.cos420.example1.service.ExampleService;
 
 public class IntegrationTestExample1Service {
-	GenericDao<Long, myOrders> dao;
-	myOdersDao citemDao;
+	GenericDao<Long, Orders> dao;
+	OrdersDao citemDao;
     ExampleService testService;
     
 	@Before
 	public void setupData() {
-	   dao = new ObjectStreamDao<Long, myOrders>("_test.ser");
-	   citemDao = new myOdersDao(dao);
+	   dao = new ObjectStreamDao<Long, Orders>("_test.ser");
+	   citemDao = new OrdersDao(dao);
 	   testService = new Example1Service(citemDao, null, null);
 	}
 	
 	@Test
     public void testaddACItem() {
-        myOrders retrievedItem;
-        List<myOrders> clist;
+        Orders retrievedItem;
+        List<Orders> clist;
         
         testService.addACItem();
         
@@ -49,17 +49,17 @@ public class IntegrationTestExample1Service {
 	@Test
     public void testmaxId() {
         Long id, newMax; 
-        List<myOrders> clist;
+        List<Orders> clist;
                 
         id = testService.maxCItemId();
         
-	    myOrders oneItem = new myOrders(2, "test string"); 
+	    Orders oneItem = new Orders(2, "test string"); 
         oneItem.setId(id + 5);
         citemDao.add(oneItem);
         newMax = testService.maxCItemId();
         clist = citemDao.list();
         
-        myOrders retrievedItem = clist.get(0);
+        Orders retrievedItem = clist.get(0);
         System.out.println(retrievedItem);
         
         assertEquals("Stored Id and original Id are not equal ", newMax.longValue(), id.longValue() + 5);

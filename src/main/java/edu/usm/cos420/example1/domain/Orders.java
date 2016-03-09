@@ -11,16 +11,16 @@ import java.sql.Date;
  *  information in this class 
  * 
  */
-public class myOrders implements Serializable
+public class Orders implements Serializable
 {
 	private static final long serialVersionUID = 7526472295622776147L;
-	private myCustomers customers;
-	private myPlants inventory;
+	private Customers customers;
+	private Plants inventory;
 	private int quantity;
 	private Date date;
 	private double total;
 
-    public myOrders(myCustomers customers, myPlants inventory, int quantity, Date date, double total)
+    public Orders(Customers customers, Plants inventory, int quantity, Date date, double total)
 	{
 		super();
 		this.customers = customers;
@@ -57,7 +57,7 @@ public class myOrders implements Serializable
 	 * Default Constructor : 
 	 * Creates new myOrders with an auto-generated sequence ID 
 	 */
-	public myOrders()
+	public Orders()
 	{
         myInteger = new Integer(0);
         myString = new String("");
@@ -68,7 +68,7 @@ public class myOrders implements Serializable
 	 * Two field Constructor : 
 	 * Creates new myOrders with an autogenenerated sequence ID 
 	 */
-    public myOrders(int n, String str)
+    public Orders(int n, String str)
 	{
         myInteger = new Integer(n);
         myString = str;
@@ -78,7 +78,7 @@ public class myOrders implements Serializable
     /** 
      * Three field constructor 
      */
-    public myOrders(Long id, int n, String str)
+    public Orders(Long id, int n, String str)
 	{
         myInteger = new Integer(n);
         myString = str;
@@ -147,12 +147,12 @@ public class myOrders implements Serializable
 		this.total = total;
 	}
 
-	public myCustomers getCustomers()
+	public Customers getCustomers()
 	{
 		return(this.customers);
 	}
 
-	public myPlants getPlants()
+	public Plants getPlants()
 	{
 		return(this.inventory);
 	}
